@@ -1,3 +1,3 @@
 export default function StudentList() {
-    return <></>;
+    return <>Student List</>;
 }

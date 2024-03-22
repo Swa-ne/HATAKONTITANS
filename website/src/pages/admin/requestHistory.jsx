@@ -1,3 +1,3 @@
 export default function RequestHistory() {
-    return <></>;
+    return <>Request History</>;
 }

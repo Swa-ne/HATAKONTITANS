@@ -6,19 +6,19 @@ import { authenticateToken } from "./services/authentication";
 import Loading from "./pages/loading";
 
 function App() {
-    const [isLoading, setIsLoading] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // useEffect(() => {
-    //     authenticateToken()
-    //         .then((isValid) => {
-    //             setIsLoggedIn(isValid);
-    //         })
-    //         .catch(() => {})
-    //         .finally(() => {
-    //             setIsLoading(false);
-    //         });
-    // }, []);
+    useEffect(() => {
+        authenticateToken()
+            .then((isValid) => {
+                setIsLoggedIn(isValid);
+            })
+            .catch(() => {})
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
     return (
         <>
             {isLoading ? (
