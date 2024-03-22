@@ -39,7 +39,7 @@ export default function Login() {
                     <div className="logo-container">
                         <img src={logo} alt="phinmapulselogo" className="logo-img" />
                     </div>
-                    <h1>DUMM PUSH</h1>
+                    <h1>PHINMA PULSE</h1>
                     {showError && <p></p>}
                     <div className="input-box">
                         <input
