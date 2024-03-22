@@ -9,25 +9,24 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
 
-    // useEffect(() => {
-    //     authenticateToken()
-    //         .then((isValid) => {
-    //             setIsLoggedIn(isValid);
-    //         })
-    //         .catch(() => {})
-    //         .finally(() => {
-    //             setIsLoading(false);
-    //         });
-    // }, []);
+    useEffect(() => {
+        authenticateToken()
+            .then((isValid) => {
+                setIsLoggedIn(isValid);
+            })
+            .catch(() => {})
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
     return (
-        // <>
-        //     {isLoading ? (
-        //         <Loading />
-        //     ) : (
-        //         <>{isLoggedIn ? <MainContent /> : <Login />}</>
-        //     )}
-        // </>
-        <Login/>
+        <>
+            {isLoading ? (
+                <Loading />
+            ) : (
+                <>{isLoggedIn ? <MainContent /> : <Login />}</>
+            )}
+        </>
     );
 }
 export default App;
