@@ -63,6 +63,23 @@
             justify-content: center;
         }
     }
+
+    ul.LOGO {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Aligns items to the top */
+        align-items: center;
+        list-style: none;
+        box-sizing: content-box;
+        li {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+    }
     transition: all 0.5s ease-in-out;
 }
 .sidebar-container:hover {

@@ -17,7 +17,7 @@ export default function HomeAdmin() {
             {/* Main content */}
             <div className="home-admin">
                 <div className="header">
-                    <h1>Request History</h1>
+                    <h1>REQUEST HISTORY</h1>
                 </div>
                 <table className="student-table">
                     <thead>

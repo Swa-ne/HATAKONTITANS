@@ -12,17 +12,14 @@ export default function HomeAdmin() {
             {/* Main content */}
             <div className="home-admin">
                 <div className="header">
-                    <h1>STUDENT WAITING LIST</h1>
+                    <h1>CURRENT REQUEST</h1>
                 </div>
                 <table className="student-table">
                     <thead>
                         <tr>
                             <th>Student ID No.</th>
-                            <th>Mobile No.</th>
-                            <th>Last School Term Attended</th>
-                            <th>Elementary School Year Graduated</th>
-                            <th>Junior High School Year Graduated</th>
-                            <th>Senior High School Year Graduated</th>
+                            <th>Name</th>
+                            <th>Requested</th>
                         </tr>
                     </thead>
                     <tbody>
