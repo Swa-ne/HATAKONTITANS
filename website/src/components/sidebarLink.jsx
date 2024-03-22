@@ -24,10 +24,10 @@ const SideBarLink = ({ direct, icon, title, isClicked }) => {
 };
 
 SideBarLink.propTypes = {
-    direct: PropTypes.string.isRequired,
+    direct: PropTypes.string,
     icon: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    isClicked: PropTypes.bool.isRequired,
+    isClicked: PropTypes.bool,
 };
 
 export default SideBarLink;

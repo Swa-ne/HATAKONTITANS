@@ -1,7 +1,7 @@
 import { Request, UserRequest } from "../models/request";
 export const requestFiles = async (userID: string, requestFilesArr: string) => {
     try {
-        let newUserRequest = await new UserRequest({ userID }).save();
+        let newUserRequest = await new UserRequest({ userID: userID.userCredentials }).save();
         for (const req of requestFilesArr) {
             let newRequest = await new Request({ request: req[0], quantity: req[1] }).save();
             newUserRequest.requests.push(newRequest._id);
@@ -16,7 +16,7 @@ export const requestFiles = async (userID: string, requestFilesArr: string) => {
 export const checkIfValidtoRequest = async (userID: string) => {
     try {
         const userRequest = await UserRequest.find({
-            userID,
+            userID: userID.userCredentials,
             paid: false,
         });
         return userRequest.length == 0;

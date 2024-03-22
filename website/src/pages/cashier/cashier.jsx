@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../assets/scss/cashier.scss";
+import { getUnpaidTransaction } from "../../services/finance";
 
 export default function Cashier() {
     // Dummy data to simulate the user list
     const [searchTerm, setSearchTerm] = useState("");
     const [filterBy, setFilterBy] = useState("studentID");
 
-    const users = [
-        // Add your user objects here
-        { studentID: "1", date: "03-24-2024", studentId: "03-2021-909090", reference: "008833", payablefee: "₱50.00" },
-        { studentID: "2", date: "03-23-2024", studentId: "03-2021-101010", reference: "003322", payablefee: "₱50.00" },
-    ];
-
+    const [users, setUsers] = useState([
+    ]);
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -19,9 +16,27 @@ export default function Cashier() {
     const handleFilterChange = (event) => {
         setFilterBy(event.target.value);
     };
+    let [filteredData, setFilteredData] = useState([])
+    useEffect(() =>{
+        setFilteredData(users.filter((user) => user[filterBy].toLowerCase().includes(searchTerm.toLowerCase())));
+    },[users, filterBy, searchTerm])
 
-    const filteredData = users.filter((user) => user[filterBy].toLowerCase().includes(searchTerm.toLowerCase()));
+    useEffect(() => {
+        async function fetchData (){
 
+            const result = await getUnpaidTransaction()
+            const resultData = result.message
+            const transformed = resultData.map(data => ({
+                transactionID: data._id,
+                date: data.createdAt,
+                studentID: data.userID.studentInformation.studentID,
+                payablefee: data.requests.reduce((total, item) => total + item.quantity, 0) * 50 // Assuming this is a field in your data
+              }));
+            setUsers(transformed)
+        }
+        fetchData()
+        
+    }, [])
     return (
         <div className="home-admin-container">
             <div className="home-admin">
@@ -32,7 +47,6 @@ export default function Cashier() {
                     <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchTermChange} />
                     <select value={filterBy} onChange={handleFilterChange}>
                         <option value="studentID">Student ID</option>
-                        <option value="reference">Reference No.</option>
                         <option value="payablefee">Payable Fee</option>
                     </select>
                 </div>
@@ -42,17 +56,15 @@ export default function Cashier() {
                             <th>#</th>
                             <th>Date</th>
                             <th>Student ID</th>
-                            <th>Reference No.</th>
                             <th>Payable Fee</th>
                         </tr>
                     </thead>
                     <tbody>
                         {filteredData.map((user) => (
-                            <tr key={user.id}>
-                                <td>{user.dbNumber}</td>
+                            <tr key={user.transactionID}>
+                                <td>{user.transactionID}</td>
                                 <td>{user.date}</td>
-                                <td>{user.studentId}</td>
-                                <td>{user.reference}</td>
+                                <td>{user.studentID}</td>
                                 <td>{user.payablefee}</td>
                             </tr>
                         ))}

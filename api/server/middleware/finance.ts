@@ -5,7 +5,7 @@ interface AuthenticatedRequest extends Request {
     user?: User;
 }
 
-export function registrarOnly(
+export function financeOnly(
     req: AuthenticatedRequest,
     res: Response,
     next: NextFunction
