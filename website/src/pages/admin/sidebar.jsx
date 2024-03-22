@@ -6,6 +6,7 @@ import Students from "../../assets/img/students.png";
 import History from "../../assets/img/history.png";
 import Current from "../../assets/img/current.png";
 import logo from "../../assets/img/hatakonLogo.png";
+import Logout from"../../assets/img/logout.png";
 
 
 const SideBar = ({ isClicked, onClick, onHover, onUnhover }) => {
@@ -51,6 +52,7 @@ const SideBar = ({ isClicked, onClick, onHover, onUnhover }) => {
                     />
                 </li>
             </ul>
+            
         </div>
     );
 };
