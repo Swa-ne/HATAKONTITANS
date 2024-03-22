@@ -1,40 +1,9 @@
-import CloseButton from 'react-bootstrap/CloseButton';
-import PropTypes from 'prop-types';
-import '../../assets/scss/sidebar.scss';
-import SideBarLink from '../sidebarLink';
-import InboxImg from '../../assets/img/inbox.png';
-import CourseImg from '../../assets/img/course.png';
-import FeedImg from '../../assets/img/feed.png';
-import ProfileImg from '../../assets/img/profile.png';
-import TaskImg from '../../assets/img/task.png';
-import NotificationImg from '../../assets/img/notification.png';
-import LogoutImg from '../../assets/img/logout.png';
-import bnw from '../../assets/img/remove.png';
+import CloseButton from "react-bootstrap/CloseButton";
+import PropTypes from "prop-types";
+import "../../assets/scss/sidebar.scss";
 
 const SideBar = ({ isClicked, onClick, onHover, onUnhover, currentPage }) => {
-    return (
-        <div className={`sidebar-container ${isClicked ? 'sidebar-open' : ''}`} onMouseOver={onHover} onMouseOut={onUnhover}>
-            <CloseButton className='sidebar-close-btn' onClick={onClick} />
-            <img className='bnw' src={bnw} alt='bnw' />
-            <h1 className='ph'>
-                PAPER <span> PULSE</span>
-            </h1>
-
-            <SideBarLink direct='/profile' icon={ProfileImg} title='Profile' isClicked={isClicked} isActive={currentPage === '/profile'} />
-            <ul className='iconS'>
-                <li>
-                    <SideBarLink direct='/' icon={FeedImg} title='Feed' isClicked={isClicked} isActive={currentPage === '/'} />
-                </li>
-                <li>
-                    <SideBarLink direct='/requestHistory' icon={TaskImg} title='Task' isClicked={isClicked} isActive={currentPage === '/request'} />
-                </li>
-                <li>
-                    <SideBarLink direct='/studentList' icon={CourseImg} title='Course' isClicked={isClicked} isActive={currentPage === '/list'} />
-                </li>
-            </ul>
-            <SideBarLink direct='/login' icon={LogoutImg} title='Logout' isClicked={isClicked} isActive={currentPage === '/login'} />
-        </div>
-    );
+    return <>SIdebar</>;
 };
 
 SideBar.propTypes = {
