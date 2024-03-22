@@ -39,7 +39,9 @@ export default function AdminLayout() {
                 onHover={handleMouseOver}
                 onUnhover={handleMouseOut}
             />
-            <Outlet />
+            <main>
+                <Outlet />
+            </main>
         </>
     );
 }

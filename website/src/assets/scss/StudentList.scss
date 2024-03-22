@@ -1,0 +1,85 @@
+.user-list-container {
+    font-family: Arial, sans-serif;
+    
+    .user-list-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+  
+      h1 {
+        color: #333;
+      }
+  
+      .add-user-btn {
+        padding: 10px 20px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    }
+  
+    .user-list-controls {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+  
+      .view-toggle {
+        button {
+          background: none;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+  
+          &:first-of-type {
+            color: #888;
+            border-bottom: 2px solid #888;
+          }
+        }
+      }
+  
+      input, select {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+    }
+  
+    .user-list-table {
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        
+        thead {
+          background-color: #9ccc65;
+          color: white;
+          
+          th {
+            padding: 15px;
+          }
+        }
+        
+        tbody {
+          tr {
+            &:nth-child(even) {
+              background-color: #9ccc65;
+            }
+            
+            td {
+              padding: 15px;
+              border-bottom: 1px solid #ddd;
+            }
+          }
+        }
+      }
+    }
+  
+    .user-list-pagination {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      // Pagination styles here
+    }
+  }

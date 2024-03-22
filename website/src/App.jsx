@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./App.scss";
 import Login from "./pages/login";
 import MainContent from "./pages/mainContent";
 import { authenticateToken } from "./services/authentication";
