@@ -5,3 +5,4 @@ export const requestformslogo = require("./assets/requestformslogo.png");
 export const accountlogo = require("./assets/accountlogo.png");
 export const regtrack = require("./assets/regtrack.png");
 export const defaultProfile = require("./assets/defaultProfile.jpg");
+export const pending = require("./assets/pending.png");

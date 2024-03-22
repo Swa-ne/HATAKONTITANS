@@ -11,8 +11,7 @@ import {
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { favicon, regtrack } from "../../imagepaths";
-// import { login } from '../../services/entry';
-// import { authenticateToken } from '../../services/authentication';
+//import { login, authenticateToken } from "../../services/entry";
 
 const LoginScreen = ({ navigation }) => {
   // const [userIdentifier, setUsername] = useState('');
