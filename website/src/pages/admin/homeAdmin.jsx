@@ -83,7 +83,7 @@ export default function HomeAdmin() {
                             <th onClick={() => handleSort("requested")}>Requested</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                                                                      
                         {sortedData.map((user) => (
                             <tr key={user.id}>
                                 <td>{user.studentID}</td>

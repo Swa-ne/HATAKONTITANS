@@ -59,7 +59,7 @@ export default function HomeAdmin() {
             {/* Main content */}
             <div className="home-admin">
                 <div className="header">
-                    <h1>CURRENT REQUEST</h1>
+                    <h1>REQUEST HISTORY</h1>
                 </div>
                 <div className="filter-container">
                     <input
