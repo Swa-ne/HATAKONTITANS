@@ -14,27 +14,26 @@ export default function Cashier() {
     const handleFilterChange = (event) => {
         setFilterBy(event.target.value);
     };
-    let [filteredData, setFilteredData] = useState([])
-    useEffect(() =>{
+    let [filteredData, setFilteredData] = useState([]);
+    let [users, setUsers] = useState([]);
+    useEffect(() => {
         setFilteredData(users.filter((user) => user[filterBy].toLowerCase().includes(searchTerm.toLowerCase())));
-    },[users, filterBy, searchTerm])
+    }, [users, filterBy, searchTerm]);
 
     useEffect(() => {
-        async function fetchData (){
-
-            const result = await getUnpaidTransaction()
-            const resultData = result.message
-            const transformed = resultData.map(data => ({
+        async function fetchData() {
+            const result = await getUnpaidTransaction();
+            const resultData = result.message;
+            const transformed = resultData.map((data) => ({
                 transactionID: data._id,
                 date: data.createdAt,
                 studentID: data.userID.studentInformation.studentID,
-                payablefee: data.requests.reduce((total, item) => total + item.quantity, 0) * 50 // Assuming this is a field in your data
-              }));
-            setUsers(transformed)
+                payablefee: data.requests.reduce((total, item) => total + item.quantity, 0) * 50, // Assuming this is a field in your data
+            }));
+            setUsers(transformed);
         }
-        fetchData()
-        
-    }, [])
+        fetchData();
+    }, []);
     return (
         <div className="home-admin-container">
             <div className="home-admin">
