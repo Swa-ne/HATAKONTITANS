@@ -26,11 +26,7 @@ export const loginUserController = async (req: Request, res: Response) => {
         const userIdentifier: string = req.body.userIdentifier;
         const password: string = req.body.password;
         const userIdentifierType = await checkInputType(userIdentifier);
-        const checkerForInput = await checkEveryInputForLogin(
-            userIdentifier,
-            password,
-            userIdentifierType
-        );
+        const checkerForInput = await checkEveryInputForLogin(userIdentifier, password, userIdentifierType);
         let userID, userType, userFullName, username;
         if (checkerForInput.message["message"] === "success") {
             const data = await loginUsertoDatabase(userIdentifier, password);
@@ -42,9 +38,8 @@ export const loginUserController = async (req: Request, res: Response) => {
                     [userID, userType, userFullName, username] = userData;
                     const user = { userID, userName: userIdentifier, userType };
                     const accessToken = jwt.sign(user, accessTokenSecret);
-                    // admin === registrar, professor === finance, student
                     const userTypeHash =
-                        userType === "admin"
+                        userType === "registrar"
                             ? "3aDfR9oPq2sW5tZyX8vBu1mNc7LkIj6Hg4TfGhJdSe4RdFgBhNjVkLo0iUyHnJm"
                             : userType === "student"
                             ? "E2jF8sG5dH9tY3kL4zX7pQ6wR1oV0mCqB6nI8bT7yU5iA3gD2fS4hJ9uMlKoP1e"
@@ -77,24 +72,14 @@ const checkInputType = async (userIdentifier: string) => {
     return userIdentifier.includes("@") ? "EmailAddress" : "Username";
 };
 
-const checkEveryInputForLogin = async (
-    userIdentifier: string,
-    password: string,
-    userIdentifierType: string
-) => {
+const checkEveryInputForLogin = async (userIdentifier: string, password: string, userIdentifierType: string) => {
     if (userIdentifierType === "Username") {
         if (!checkUsernameValidity(userIdentifier)) {
-            return new HttpResponse(
-                { message: "Wrong Email or Password." },
-                200
-            );
+            return new HttpResponse({ message: "Wrong Email or Password." }, 200);
         }
     } else {
         if (!checkEmailValidity(userIdentifier)) {
-            return new HttpResponse(
-                { message: "Wrong Email or Password." },
-                200
-            );
+            return new HttpResponse({ message: "Wrong Email or Password." }, 200);
         }
     }
     if (!checkPasswordValidity(password)) {
@@ -105,21 +90,8 @@ const checkEveryInputForLogin = async (
 // Registrations
 export const registerUserController = async (req: Request, res: Response) => {
     try {
-        const {
-            firstName,
-            middleName,
-            lastName,
-            personalEmail,
-            studentID,
-            username,
-            password,
-            userType,
-        } = req.body;
-        const checkerForInput = await checkEveryInputForSignup(
-            username,
-            personalEmail,
-            password
-        );
+        const { firstName, middleName, lastName, personalEmail, studentID, username, password, address, userType, department } = req.body;
+        const checkerForInput = await checkEveryInputForSignup(username, personalEmail, password);
         if (checkerForInput.message["message"] === "success") {
             const data = await registerUsertoDatabase(
                 firstName,
@@ -129,7 +101,9 @@ export const registerUserController = async (req: Request, res: Response) => {
                 personalEmail,
                 password,
                 userType,
-                studentID
+                address,
+                studentID,
+                department
             );
             res.status(data.httpCode).json({ message: data.message });
             return;
@@ -142,16 +116,9 @@ export const registerUserController = async (req: Request, res: Response) => {
     }
 };
 
-const checkEveryInputForSignup = async (
-    username: string,
-    personalEmail: string,
-    password: string
-): Promise<HttpResponse> => {
+const checkEveryInputForSignup = async (username: string, personalEmail: string, password: string): Promise<HttpResponse> => {
     if (!checkUsernameValidity(username)) {
-        return new HttpResponse(
-            { message: "Username must only contains letters and numbers." },
-            200
-        );
+        return new HttpResponse({ message: "Username must only contains letters and numbers." }, 200);
     }
     if (!checkEmailValidity(personalEmail)) {
         return new HttpResponse({ message: "Invalid personal email." }, 200);
@@ -159,23 +126,16 @@ const checkEveryInputForSignup = async (
     if (!checkPasswordValidity(password)) {
         return new HttpResponse(
             {
-                message:
-                    "Password must have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.",
+                message: "Password must have at least one lowercase letter, one uppercase letter, one numeric digit, and one special character.",
             },
             200
         );
     }
     if (!(await checkUsernameAvailability(username))) {
-        return new HttpResponse(
-            { message: "This username is being used." },
-            200
-        );
+        return new HttpResponse({ message: "This username is being used." }, 200);
     }
     if (!(await checkPersonalEmailAvailability(personalEmail))) {
-        return new HttpResponse(
-            { message: "This personal email address is being used." },
-            200
-        );
+        return new HttpResponse({ message: "This personal email address is being used." }, 200);
     }
     return new HttpResponse({ message: "success" }, 200);
 };
