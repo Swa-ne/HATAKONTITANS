@@ -18,9 +18,6 @@ export default function HomeAdmin() {
                     <thead>
                         <tr>
                             <th>Student ID No.</th>
-                            <th>SEX</th>
-                            <th>Complete Address</th>
-                            <th>Place of Birth</th>
                             <th>Mobile No.</th>
                             <th>Last School Term Attended</th>
                             <th>Elementary School Year Graduated</th>
