@@ -12,6 +12,7 @@ dotenv.config();
 import entryRoutes from "./routes/entry";
 import studentRoutes from "./routes/student";
 import financeRoutes from "./routes/finance";
+import registrarRoutes from "./routes/registrar";
 import { authenticateToken } from "./middleware/authentication";
 
 const app = express();
@@ -46,6 +47,7 @@ app.use(
 app.use("/entry/", entryRoutes);
 app.use("/student/", studentRoutes);
 app.use("/finance/", financeRoutes);
+app.use("/registrar/", registrarRoutes);
 
 // schedule.scheduleJob('*/1 * * * *', () => {
 //     addReminderNotification();

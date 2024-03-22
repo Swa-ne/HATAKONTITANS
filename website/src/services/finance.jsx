@@ -16,3 +16,17 @@ export const getUnpaidTransaction = async () => {
         });
     return response;
 };
+
+export const getCurrentRequest = async () => {
+    const response = await axios
+        .get(`${apiURL}/registrar/current-request`, {
+            headers: {
+                authorization: cookies.get('authorization'),
+            }
+        })
+        .then((response) => response.data)
+        .catch((error) => {
+            throw error;
+        });
+    return response;
+};

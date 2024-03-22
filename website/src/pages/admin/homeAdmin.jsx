@@ -1,17 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../assets/scss/homeAdmin.scss";
+import { getCurrentRequest } from '../../services/finance';
 
 export default function HomeAdmin() {
     // Dummy data to simulate the user list
     const [searchTerm, setSearchTerm] = useState("");
     const [filterBy, setFilterBy] = useState("firstName");
 
-    const users = [
-        // Add your user objects here
-        { studentID: "1", firstName: "John", lastName: "Doe", requested: "123 Main St", department: "Computer Science", email: "john@example.com", contactNo: "123-456-7890" },
-        { studentID: "2", firstName: "Jane", lastName: "Smith", requested: "456 Elm St", department: "Electrical Engineering", email: "jane@example.com", contactNo: "987-654-3210" }
-    ];
+   
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        async function fetchData (){
 
+            const result = await getCurrentRequest()
+            const resultData = result.message
+            const transformed = resultData.map(data => ({
+                firstName: data.userID.studentInformation.firstName,
+                lastName: data.userID.studentInformation.lastName,
+                studentID: data.userID.studentInformation.studentID,
+                requested: data.requests
+            }));
+            setUsers(transformed)
+        }
+        fetchData()
+        
+    }, [])
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -20,10 +33,10 @@ export default function HomeAdmin() {
         setFilterBy(event.target.value);
     };
 
-    const filteredData = users.filter((user) =>
-        user[filterBy].toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
+    let [filteredData, setFilteredData] = useState([])
+    useEffect(() =>{
+        setFilteredData(users.filter((user) => user[filterBy].toLowerCase().includes(searchTerm.toLowerCase())));
+    },[users, filterBy, searchTerm])
     // Sorting function
     const [sortKey, setSortKey] = useState("");
     const [sortOrder, setSortOrder] = useState("asc");
@@ -84,8 +97,8 @@ export default function HomeAdmin() {
                         </tr>
                     </thead>
                     <tbody>                                                                      
-                        {sortedData.map((user) => (
-                            <tr key={user.id}>
+                        {sortedData.map((user, idx) => (
+                            <tr key={idx}>
                                 <td>{user.studentID}</td>
                                 <td>{user.firstName}</td>
                                 <td>{user.lastName}</td>

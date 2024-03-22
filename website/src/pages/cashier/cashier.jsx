@@ -7,8 +7,6 @@ export default function Cashier() {
     const [searchTerm, setSearchTerm] = useState("");
     const [filterBy, setFilterBy] = useState("studentID");
 
-    const [users, setUsers] = useState([
-    ]);
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
     };
