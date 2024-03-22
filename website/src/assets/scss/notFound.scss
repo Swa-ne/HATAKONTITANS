@@ -1,0 +1,45 @@
+
+.NotFoundContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    background-color: #3a4f24;
+  }
+  
+  .Error_code {
+    font-size: 5rem;
+    color: #f3f3f3;
+    font-family:"Ubuntu";
+  }
+
+  .Error_text {
+    font-size: 2rem;
+    color: #f3f3f3;
+    font-family:"Ubuntu";
+  }
+  
+  .Message {
+    font-size: 1.5rem;
+    color: #cfcfcf;
+  }
+  
+  .HomeLink {
+    font-family:"Ubuntu";
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #000000;
+    color: #f3f3f3;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .HomeLink:hover {
+    background-color: #505050;
+    color: #f3f3f3;
+  }
+  
