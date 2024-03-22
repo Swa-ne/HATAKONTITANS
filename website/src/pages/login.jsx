@@ -3,7 +3,7 @@ import { FaUser, FaLock, FaUnlock } from "react-icons/fa";
 import "../assets/scss/login.scss";
 import { useNavigate } from "react-router-dom";
 import { cookies, login } from "../services/entry";
-import logo from "../assets/images/hatakonLogo.png";
+import logo from "../assets/img/hatakonLogo.png";
 
 export default function Login() {
     const emailRef = useRef(null);
