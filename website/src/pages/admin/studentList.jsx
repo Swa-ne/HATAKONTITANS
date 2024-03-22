@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../assets/scss/StudentList.scss"
+import "../../assets/scss/homeAdmin.scss"
 
 export default function StudentList() {
     // Dummy data to simulate the user list
@@ -8,55 +8,27 @@ export default function StudentList() {
     ];
 
     return (
-        <div className="user-list-container">
-            <header className="user-list-header">
-                <h1>User List</h1>
-                <button className="add-user-btn">Add User</button>
-            </header>
-            <div className="user-list-controls">
-                <div className="view-toggle">
-                    <button>List</button>
-                    <button>Grid</button>
+        <div className="home-admin-container">
+            <div className="home-admin">
+                <div className="header">
+                    <h1>Student List</h1>
                 </div>
-                <input type="text" placeholder="Search..." />
-                <select>
-                    <option>Select Department</option>
-                    {/* Map through departments here */}
-                </select>
-                <select>
-                    <option>Select Designation</option>
-                    {/* Map through designations here */}
-                </select>
-            </div>
-            <div className="user-list-table">
-                <table>
+                <table className="student-table">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Designation</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Address</th>
                             <th>Department</th>
                             <th>Email</th>
-                            <th>Phone No.</th>
-                            <th>Status</th>
+                            <th>Contact No.</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>{user.designation}</td>
-                                <td>{user.department}</td>
-                                <td>{user.email}</td>
-                                <td>{user.phone}</td>
-                                <td>{user.status}</td>
-                            </tr>
-                        ))}
+                        {/* Data rows will go here */}
                     </tbody>
                 </table>
             </div>
-            <footer className="user-list-pagination">
-                {/* Pagination controls here */}
-            </footer>
         </div>
     );
 }
