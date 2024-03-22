@@ -20,13 +20,14 @@ function App() {
     //         });
     // }, []);
     return (
-        <>
-            {isLoading ? (
-                <Loading />
-            ) : (
-                <>{isLoggedIn ? <MainContent /> : <Login />}</>
-            )}
-        </>
+        // <>
+        //     {isLoading ? (
+        //         <Loading />
+        //     ) : (
+        //         <>{isLoggedIn ? <MainContent /> : <Login />}</>
+        //     )}
+        // </>
+        <Login/>
     );
 }
 export default App;

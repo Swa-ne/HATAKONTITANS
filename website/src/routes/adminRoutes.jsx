@@ -4,6 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import HomeAdmin from "../pages/admin/homeAdmin";
 import StudentList from "../pages/admin/studentList";
 import RequestHistory from "../pages/admin/requestHistory";
+import Login from "../pages/login";
+
 
 export default function AdminRoutes() {
     return (
@@ -14,6 +16,7 @@ export default function AdminRoutes() {
                 {/* Active Request list */}
                 <Route path="request-history" element={<RequestHistory />} />
                 <Route path="student-list" element={<StudentList />} />
+                <Route path="login" element={<Login />} />
             </Route>
         </Routes>
     );

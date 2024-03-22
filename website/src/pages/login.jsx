@@ -3,6 +3,7 @@ import { FaUser, FaLock, FaUnlock } from "react-icons/fa";
 import "../assets/scss/login.scss";
 import { useNavigate } from "react-router-dom";
 import { cookies, login } from "../services/entry";
+import logo from "../assets/images/hatakonLogo.png";
 
 export default function Login() {
     const emailRef = useRef(null);
@@ -35,7 +36,10 @@ export default function Login() {
         <div className="login-container">
             <div className="wrapper">
                 <form>
-                    <h1>APP NAME</h1>
+                    <div className="logo-container">
+                        <img src={logo} alt="phinmapulselogo" className="logo-img" />
+                    </div>
+                    <h1>PHINMA PULSE</h1>
                     {showError && <p></p>}
                     <div className="input-box">
                         <input
