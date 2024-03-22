@@ -1,0 +1,29 @@
+.user-list-container .nav {
+    background-color: #3A4F24;
+    width: 100%;
+  }
+  
+  .user-list-container .nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end; /* Align list items to the right */
+    padding: 20px;
+    margin: 0; /* Remove default margin */
+    
+  }
+  
+  .user-list-container .nav ul li {
+    padding: 10px;
+    font-size: 20px;
+    
+  }
+  
+  .user-list-container .nav a {
+    box-shadow: 2px 2px 5px black;
+    padding: 8px;
+    color: black;
+    text-decoration: none;
+    border-radius: 15px;
+    background-color: #E0FFBF;
+    
+  }

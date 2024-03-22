@@ -7,6 +7,7 @@ import RequestHistory from "../pages/admin/requestHistory";
 import AdminLayout from "../layout/adminLayout";
 import NotFound from "../pages/notFound";
 import { useState } from "react";
+import Cashier from "../pages/cashier/cashier"
 
 export default function AdminRoutes() {
     return (
@@ -16,6 +17,8 @@ export default function AdminRoutes() {
                 <Route index element={<HomeAdmin />} />
                 <Route path="request-history" element={<RequestHistory />} />
                 <Route path="student-list" element={<StudentList />} />
+                <Route path="cashier" element={<Cashier/>} />
+
                 <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
