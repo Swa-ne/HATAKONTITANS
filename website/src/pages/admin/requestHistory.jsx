@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 import "../../assets/scss/homeAdmin.scss";
+import { getHistoryRequest } from "../../services/finance";
 
 export default function HomeAdmin() {
     // Dummy data to simulate the user list
     const [searchTerm, setSearchTerm] = useState("");
-    const [filterBy, setFilterBy] = useState("firstName");
-
-    const studentData = [
-        // Add your student objects here
-        { dateRequested: "1", firstName: "John", lastName: "Doe", requested: "123 Main St", department: "Computer Science", email: "john@example.com", contactNo: "123-456-7890" },
-        { dateRequested: "2", firstName: "Jane", lastName: "Smith", requested: "456 Elm St", department: "Electrical Engineering", email: "jane@example.com", contactNo: "987-654-3210" }
-    ];
+    const [filterBy, setFilterBy] = useState("studentID");
 
     const handleSearchTermChange = (event) => {
         setSearchTerm(event.target.value);
@@ -19,42 +14,33 @@ export default function HomeAdmin() {
     const handleFilterChange = (event) => {
         setFilterBy(event.target.value);
     };
+    let [filteredData, setFilteredData] = useState([]);
+    let [users, setUsers] = useState([]);
+    useEffect(() => {
+        setFilteredData(users.filter((user) => user[filterBy].toLowerCase().includes(searchTerm.toLowerCase())));
+    }, [users, filterBy, searchTerm]);
+    useEffect(() => {
+        console.log(filteredData);
+    }, [filteredData]);
 
-    const filteredData = studentData.filter((student) =>
-        student[filterBy].toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    // Sorting function
-    const [sortKey, setSortKey] = useState("");
-    const [sortOrder, setSortOrder] = useState("asc");
-
-    const handleSort = (key) => {
-        if (sortKey === key) {
-            setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-        } else {
-            setSortKey(key);
-            setSortOrder("asc");
+    useEffect(() => {
+        async function fetchData() {
+            const result = await getHistoryRequest();
+            const resultData = result.message;
+            const transformed = resultData.map((data) => ({
+                firstName: data.userID.studentInformation.firstName,
+                lastName: data.userID.studentInformation.lastName,
+                studentID: data.userID.studentInformation.studentID,
+                requested: data.requests,
+            }));
+            setUsers(transformed);
         }
-    };
-
-    const sortedData = filteredData.sort((a, b) => {
-        const aValue = a[sortKey];
-        const bValue = b[sortKey];
-        if (aValue < bValue) {
-            return sortOrder === "asc" ? -1 : 1;
-        }
-        if (aValue > bValue) {
-            return sortOrder === "asc" ? 1 : -1;
-        }
-        return 0;
-    });
-
+        fetchData();
+    }, []);
     return (
         <div className="home-admin-container">
             {/* Sidebar */}
-            <div className="sidebar">
-                {/* Your sidebar content */}
-            </div>
+            <div className="sidebar">{/* Your sidebar content */}</div>
 
             {/* Main content */}
             <div className="home-admin">
@@ -62,12 +48,7 @@ export default function HomeAdmin() {
                     <h1>REQUEST HISTORY</h1>
                 </div>
                 <div className="filter-container">
-                    <input
-                        type="text"
-                        placeholder="Search..."
-                        value={searchTerm}
-                        onChange={handleSearchTermChange}
-                    />
+                    <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearchTermChange} />
                     <select value={filterBy} onChange={handleFilterChange}>
                         <option value="firstName">First Name</option>
                         <option value="lastName">Last Name</option>
@@ -83,12 +64,19 @@ export default function HomeAdmin() {
                         </tr>
                     </thead>
                     <tbody>
-                        {sortedData.map((student) => (
-                            <tr key={student.studentID}>
-                                <td>{student.dateRequested}</td>
-                                <td>{student.firstName}</td>
-                                <td>{student.lastName}</td>
-                                <td>{student.requested}</td>
+                        {filteredData.map((user, idx) => (
+                            <tr key={idx}>
+                                <td>{user.studentID}</td>
+                                <td>{user.firstName}</td>
+                                <td>{user.lastName}</td>
+                                <td>
+                                    {user.requested.map((req, idx) => (
+                                        <span key={idx}>
+                                            {req.request}
+                                            {idx !== user.requested.length - 1 ? ", " : ""}
+                                        </span>
+                                    ))}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
