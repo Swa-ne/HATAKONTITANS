@@ -19,3 +19,11 @@ export const historyRequest = async () => {
         return { message: error.message, httpCode: 500 };
     }
 };
+export const editRequest = async (requestID: string) => {
+    try {
+        let result = await UserRequest.findByIdAndUpdate(requestID, {status: "Ready"});
+        return { message: result, httpCode: 200 };
+    } catch (error: any) {
+        return { message: error.message, httpCode: 500 };
+    }
+};

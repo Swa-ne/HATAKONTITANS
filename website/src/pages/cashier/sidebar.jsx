@@ -5,6 +5,7 @@ import SideBarLink from "../../components/sidebarLink";
 import logo from "../../assets/img/hatakonLogo.png";
 import { Link } from "react-router-dom";
 import { logout } from "../../services/entry";
+import Logout from "../../assets/img/logout.png"
 
 const SideBar = ({ isClicked, onClick, onHover, onUnhover }) => {
     return (
@@ -19,6 +20,7 @@ const SideBar = ({ isClicked, onClick, onHover, onUnhover }) => {
                 <Link
                     to={"Logout"}
                     className={`sidebar-link`}
+                    icon={Logout}
                     onClick={() => {
                         logout();
                         window.location.reload();

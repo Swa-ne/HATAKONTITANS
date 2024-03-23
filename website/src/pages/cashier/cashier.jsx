@@ -54,6 +54,7 @@ export default function Cashier() {
                             <th>Date</th>
                             <th>Student ID</th>
                             <th>Payable Fee</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,6 +64,9 @@ export default function Cashier() {
                                 <td>{user.date}</td>
                                 <td>{user.studentID}</td>
                                 <td>{user.payablefee}</td>
+                                <td>
+                                    <button className="button" onClick={async () => {editRequest(user.id);}}>Paid</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

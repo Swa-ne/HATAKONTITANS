@@ -44,3 +44,19 @@ export const getHistoryRequest = async () => {
         });
     return response;
 };
+
+export const editRequest = async (requestID) => {
+    const response = await axios
+        .put(`${apiURL}/registrar/edit-request`, {
+        requestID: requestID
+    },{
+            headers: {
+                authorization: cookies.get("authorization"),
+            },
+        })
+        .then((response) => response.data)
+        .catch((error) => {
+            throw error;
+        });
+    return response;
+};

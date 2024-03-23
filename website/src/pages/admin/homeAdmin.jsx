@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../../assets/scss/homeAdmin.scss";
-import { getCurrentRequest } from "../../services/finance";
+import { editRequest, getCurrentRequest } from "../../services/finance";
 
 export default function HomeAdmin() {
     // Dummy data to simulate the user list
@@ -28,6 +28,7 @@ export default function HomeAdmin() {
             const result = await getCurrentRequest();
             const resultData = result.message;
             const transformed = resultData.map((data) => ({
+                id: data._id,
                 firstName: data.userID.studentInformation.firstName,
                 lastName: data.userID.studentInformation.lastName,
                 studentID: data.userID.studentInformation.studentID,
@@ -58,6 +59,7 @@ export default function HomeAdmin() {
                             <th onClick={() => handleSort("firstName")}>First Name</th>
                             <th onClick={() => handleSort("lastName")}>Last Name</th>
                             <th onClick={() => handleSort("requested")}>Requested</th>
+                            <th onClick={() => handleSort("action")}>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -73,6 +75,9 @@ export default function HomeAdmin() {
                                             {idx !== user.requested.length - 1 ? ", " : ""}
                                         </span>
                                     ))}
+                                </td>
+                                <td>
+                                    <button className="button" onClick={async () => {editRequest(user.id);}}>Success</button>
                                 </td>
                             </tr>
                         ))}
