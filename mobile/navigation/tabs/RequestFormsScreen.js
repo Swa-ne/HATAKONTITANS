@@ -149,6 +149,54 @@ export default function RequestFormsScreen() {
                   />
                 </Card>
 
+                <Card
+                  style={{
+                    backgroundColor: "white",
+                    borderWidth: 2,
+                    borderColor: "rgba(0, 0, 0, 0.1)",
+                    marginTop: 5,
+                    margin: 20,
+                    height: 100,
+                  }}
+                >
+                  <Card.Title
+                    title="Request"
+                    titleStyle={{
+                      textAlign: "center",
+                      fontFamily: "Ubuntu-Bold",
+                    }}
+                    subtitle="Transfer Credentials"
+                    subtitleStyle={{
+                      textAlign: "center",
+                      fontFamily: "Ubuntu-Regular",
+                    }}
+                  />
+                </Card>
+
+                <Card
+                  style={{
+                    backgroundColor: "white",
+                    borderWidth: 2,
+                    borderColor: "rgba(0, 0, 0, 0.1)",
+                    marginTop: 5,
+                    margin: 20,
+                    height: 100,
+                  }}
+                >
+                  <Card.Title
+                    title="Request"
+                    titleStyle={{
+                      textAlign: "center",
+                      fontFamily: "Ubuntu-Bold",
+                    }}
+                    subtitle="Form 138"
+                    subtitleStyle={{
+                      textAlign: "center",
+                      fontFamily: "Ubuntu-Regular",
+                    }}
+                  />
+                </Card>
+
                 {/* <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => setModalVisible(!modalVisible)}
